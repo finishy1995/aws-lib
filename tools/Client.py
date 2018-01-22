@@ -33,14 +33,26 @@ def getProfileCertificate(service, profile='default'):
     
     return client
 
+# This method is suitable for any other situation.
+def getDefaultCertificate(service):
+    client = boto3.client(service)
+    
+    return client
+
 # Get Client.
 # Input:    String client type 'profile'|'temporary'
 # Output:   Null.
-def getClient(service, clientType='profile'):
+def getClient(service, clientType='profile', profile='default'):
     if clientType == 'profile':
-        client = getProfileCertificate(service)
+        try:
+            client = getProfileCertificate(service, profile)
+        except:
+            client = getDefaultCertificate(service)
     elif clientType == 'temporary':
-        client = getTemporaryCertificate(service)
+        try:
+            client = getTemporaryCertificate(service)
+        except:
+            client = getDefaultCertificate(service)
     else:
         return None
 

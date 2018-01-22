@@ -29,11 +29,11 @@ def createJsonFormat(valueType, value):
 # Number Json Format.
 # Input:    Int value.
 # Output:   Format Dir.
-def createNumberFormat(value)
+def createNumberFormat(value):
     return createJsonFormat('N', str(value))
     
 # String Json Format.
 # Input:    String value.
 # Output:   Format Dir.
-def createStringFormat(value)
+def createStringFormat(value):
     return createJsonFormat('S', value)
