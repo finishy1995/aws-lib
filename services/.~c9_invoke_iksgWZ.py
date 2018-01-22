@@ -3,7 +3,7 @@ import botocore
 import random
 import string
 import commands
-import Client
+from tools import Client
 
 
 client = Client.getProfileCertificate('s3')
@@ -16,27 +16,7 @@ def createRandomString(length):
     
     return ''.join(random.choice(letters) for i in range(length))
     
-# Get All File Path From Folder Path.
-# Input:    String folder path.
-# Output:   Array folders file data [filePath, ...].
-def getFilePathFrom(folderPath):
-    if folderPath[-1] != '/':
-        folderPath += '/'
-    fileData = []
-    
-    (status, output) = commands.getstatusoutput('ls ' + folderPath)
-    if status == 0:
-        files = output.split('\n')
-    else:
-        files = []
-    
-    for item in files:
-        if item.find('.') != -1:
-            fileData.append(folderPath + item)
-        else:
-            fileData += getFilePathFrom(folderPath + item + '/')
-    
-    return fileData
+
     
 # Get Location Name By Region ID.
 # Input:    String region.

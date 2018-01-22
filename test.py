@@ -1,3 +1,3 @@
-from Python import *
+from services import *
 
 print S3.listBuckets()

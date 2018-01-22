@@ -32,3 +32,16 @@ def getProfileCertificate(service, profile='default'):
     client = session.client(service)
     
     return client
+
+# Get Client.
+# Input:    String client type 'profile'|'temporary'
+# Output:   Null.
+def getClient(service, clientType='profile'):
+    if clientType == 'profile':
+        client = getProfileCertificate(service)
+    elif clientType == 'temporary':
+        client = getTemporaryCertificate(service)
+    else:
+        return None
+
+    return client
